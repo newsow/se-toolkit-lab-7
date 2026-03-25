@@ -5,7 +5,7 @@ They don't know about Telegram — same function works from --test mode,
 unit tests, or the Telegram bot.
 """
 
-from .commands import (
+from .commands.handlers import (
     handle_help,
     handle_health,
     handle_labs,
