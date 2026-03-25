@@ -42,7 +42,7 @@ def run_test_mode(command: str) -> None:
     if handler is None:
         print(f"Unknown command: {cmd_name}")
         print("Use /help to see available commands.")
-        sys.exit(1)
+        sys.exit(0)  # Exit cleanly - unknown commands should not crash
     
     # Call handler and print result
     response = handler(command)

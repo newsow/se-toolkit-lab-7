@@ -11,7 +11,7 @@ class Settings(BaseSettings):
     """Bot configuration loaded from environment variables."""
 
     model_config = SettingsConfigDict(
-        env_file=".env.bot.secret",
+        env_file="../.env.bot.secret",
         env_file_encoding="utf-8",
         extra="ignore",
     )
