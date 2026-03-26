@@ -91,3 +91,40 @@ By the end of this lab, you should be able to say:
 2. [Backend Integration](./lab/tasks/required/task-2.md) — P0: slash commands + real data
 3. [Intent-Based Natural Language Routing](./lab/tasks/required/task-3.md) — P1: LLM tool use
 4. [Containerize and Document](./lab/tasks/required/task-4.md) — P3: containerize + deploy
+
+## Deploy
+
+To deploy the bot using Docker Compose, follow these steps:
+
+1. **Create the environment file**. Copy `.env.docker.example` to `.env.docker.secret` and fill in the required secrets:
+
+   ```bash
+   cp .env.docker.example .env.docker.secret
+   ```
+
+   Edit `.env.docker.secret` and set at least these variables:
+   - `BOT_TOKEN` — your Telegram bot token from @BotFather
+   - `API_TOKEN` — the LMS API key for backend authentication
+   - `LLM_API_KEY` — your LLM API key for intent routing
+
+2. **Build and start all services**. Run the following command from the project root:
+
+   ```bash
+   docker compose --env-file .env.docker.secret up --build -d
+   ```
+
+   This builds the bot container (along with backend, postgres, etc.) and starts them in detached mode.
+
+3. **Check the bot logs**. To verify the bot is running correctly:
+
+   ```bash
+   docker compose logs bot
+   ```
+
+   Add `-f` to follow logs in real-time: `docker compose logs -f bot`
+
+4. **Restart if needed**. If you update bot code or environment variables:
+
+   ```bash
+   docker compose --env-file .env.docker.secret up --build -d bot
+   ```
